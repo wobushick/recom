@@ -8,7 +8,7 @@
   "overrideCommand": true,
 
   // 工作目录（镜像里 WORKDIR 是 /opt/spark/work-dir，我们就用这个）
-  "workspaceFolder": "/opt/spark/work-dir",
+  "workspaceFolder": "/",
 
   // 常用端口转发：Spark UI、Jupyter（如果你以后装）
   "forwardPorts": [4040, 8888],
