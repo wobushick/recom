@@ -3,7 +3,7 @@
   "build": {
     "dockerfile": "./Dockerfile"
   },
-  "workspaceFolder": "/root",
+  "workspaceFolder": "/root/workspaces/recom",
   "remoteUser": "root",
   "runArgs": ["--entrypoint", "/bin/bash"],
   "overrideCommand": true,
