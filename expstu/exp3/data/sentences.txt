@@ -1,0 +1,15 @@
+Hello World and Welcome to Spark
+Apache Spark is a fast and general-purpose cluster computing system
+Spark provides high-level APIs in Java Scala Python and R
+RDD is the fundamental data structure of Spark
+Transformation operations are lazily evaluated in Spark
+Action operations trigger the actual computation
+Spark runs on Hadoop Mesos standalone or in the cloud
+Spark can access diverse data sources including HDFS HBase and Cassandra
+Machine Learning Library MLlib is part of Spark ecosystem
+GraphX is Spark's API for graphs and graph-parallel computation
+Spark Streaming enables scalable high-throughput fault-tolerant stream processing
+DataFrame and Dataset APIs provide a more optimized way to work with structured data
+Spark SQL allows querying data via SQL as well as HQL
+PySpark is the Python API for Spark programming
+Spark Standalone mode is the easiest way to get started with Spark

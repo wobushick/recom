@@ -1,0 +1,10 @@
+doc1,spark rdd programming guide and tutorial
+doc2,apache spark is a fast big data processing engine
+doc3,rdd stands for resilient distributed dataset
+doc4,spark transformation and action operations explained
+doc5,big data analytics with apache spark framework
+doc6,programming guide for spark rdd and dataframe
+doc7,distributed computing using spark cluster
+doc8,spark tutorial for beginners and advanced users
+doc9,data processing pipeline with spark rdd
+doc10,spark machine learning and rdd operations

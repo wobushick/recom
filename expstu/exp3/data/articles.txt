@@ -1,0 +1,11 @@
+Apache Spark is a unified analytics engine for large-scale data processing It provides high-level APIs in Scala Java Python and R and an optimized engine that supports general computation graphs for data analysis It also supports a rich set of higher-level tools including Spark SQL for SQL and DataFrames MLlib for machine learning GraphX for graph processing and Structured Streaming for incremental computation and stream processing
+
+At a high level every Spark application consists of a driver program that runs the user main function and executes various parallel operations on a cluster The main abstraction Spark provides is a resilient distributed dataset RDD which is a collection of elements partitioned across the nodes of the cluster that can be operated on in parallel
+
+Spark revolves around the concept of a resilient distributed dataset RDD which is a fault-tolerant collection of elements that can be operated on in parallel There are two ways to create RDDs parallelizing an existing collection in your driver program or referencing a dataset in an external storage system such as a shared filesystem HDFS HBase or any data source offering a Hadoop InputFormat
+
+Spark supports two types of operations transformations and actions Transformations are operations on RDDs that return a new RDD such as map filter and reduceByKey Actions are operations that return a result to the driver program or write it to storage and kick off a computation such as count and collect
+
+One of the capabilities of Spark is persisting or caching a dataset in memory across operations When you persist an RDD each node stores any partitions of it that it computes in memory and reuses them in other actions on that dataset or datasets derived from it This allows future actions to be much faster often by more than 10x Caching is a key tool for iterative algorithms and fast interactive use of Spark
+
+Broadcast variables allow the programmer to keep a read-only variable cached on each machine rather than shipping a copy of it with tasks They can be used for example to give every node a copy of a large input dataset efficiently Spark also attempts to distribute broadcast variables using efficient broadcast algorithms to reduce communication cost
