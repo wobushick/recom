@@ -18,7 +18,7 @@ sc = SparkContext(conf=conf)
 sc.setLogLevel("WARN")
 
 # 基础配置
-DATA_DIR = "data"
+DATA_DIR = "expstu/exp3/data"
 OUTPUT_DIR = "output"
 
 # 清理旧的输出目录
