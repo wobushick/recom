@@ -1,0 +1,7 @@
+record_id,item,quantity,warehouse
+R001,螺丝,500,A区
+R002,螺母,300,A区
+R003,垫片,800,B区
+R004,螺栓,200,A区
+R005,弹簧,150,C区
+R006,轴承,50,B区
