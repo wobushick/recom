@@ -19,7 +19,7 @@ sc.setLogLevel("WARN")
 
 # 基础配置
 DATA_DIR = "expstu/exp3/data"
-OUTPUT_DIR = "output"
+OUTPUT_DIR = "expstu/exp3/output"
 
 # 清理旧的输出目录
 if os.path.exists(OUTPUT_DIR):
