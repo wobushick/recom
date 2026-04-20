@@ -1,0 +1,30 @@
+Apache Spark is a unified analytics engine for large-scale data processing.
+Spark provides high-level APIs in Java, Scala, Python, and R.
+Spark supports batch processing, streaming analytics, machine learning, and graph processing.
+The core abstraction of Spark is an immutable distributed collection of objects called Resilient Distributed Dataset.
+RDD is the fundamental data structure of Apache Spark.
+Spark can run on Hadoop, Mesos, Kubernetes, standalone, or in the cloud.
+Spark can access diverse data sources including HDFS, HBase, and Cassandra.
+Spark SQL allows structured data processing with SQL queries.
+MLlib provides scalable machine learning algorithms.
+GraphX is Spark's API for graphs and graph-parallel computation.
+Structured Streaming is built on Spark SQL engine.
+Spark supports lazy evaluation which improves performance.
+A DataFrame is a distributed collection of data organized into named columns.
+Spark SQL is Apache Spark's module for working with structured data.
+Spark uses a master-slave architecture for distributed computing.
+The driver program coordinates the execution of tasks on executors.
+Partitioning improves the performance of Spark applications.
+Transformations are lazy operations that create new RDDs from existing ones.
+Actions are operations that return values to the driver or write data to storage.
+Catalyst optimizer in Spark SQL improves query performance significantly.
+Tungsten project improves memory management and code generation.
+Spark Streaming processes live data streams using micro-batch architecture.
+Dataframes provide better performance than RDDs due to Catalyst optimizer.
+Spark can handle both structured and unstructured data processing.
+The wide transformation requires data shuffling across partitions.
+Narrow transformations like map filter can be performed independently on each partition.
+Spark uses Hadoop Distributed File System for fault-tolerant storage.
+Checkpointing helps prevent stack overflow errors in Spark Streaming.
+Spark guarantees exactly-once semantics for fault tolerance.
+Job scheduling in Spark follows a FIFO scheduler by default.
