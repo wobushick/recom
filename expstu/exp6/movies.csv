@@ -1,0 +1,103 @@
+AIGC: {"Label":"1","ContentProducer":"001191110108MA01KP2T5U00000","ProduceID":"651dbb5a3218cbf1e3e44efcb918bc9d","ReservedCode1":"","ContentPropagator":"001191110108MA01KP2T5U00000","PropagateID":"651dbb5a3218cbf1e3e44efcb918bc9d","ReservedCode2":""}
+
+movieId,title,genres
+0,Toy Story,Film-Noir|Western
+1,Jumanji,Western|Adventure
+2,Grumpier Old Men,Horror
+3,Waiting to Exhale,Western|Horror
+4,Father of the Bride Part II,Musical|Romance
+5,Heat,Film-Noir
+6,Sabrina,Adventure|Comedy
+7,Tom and Huck,Action|Thriller|Documentary
+8,Sudden Death,Mystery|Documentary
+9,GoldenEye,Documentary|Thriller|Musical
+10,American President The,Sci-Fi|Drama|War
+11,Dracula: Dead and Loving It,Children|Adventure|Fantasy
+12,Balto,Sci-Fi|Film-Noir|Comedy
+13,Nixon,Comedy|Children
+14,Cutthroat Island,Adventure|Drama|Sci-Fi
+15,Casino,Children
+16,Sense and Sensibility,Romance|Action|Sci-Fi
+17,Four Rooms,Action|Children
+18,Ace Ventura: When Nature Calls,Thriller
+19,Money Train,Thriller|Action
+20,Get Shorty,Crime|Western|Documentary
+21,Copycat,Action|Mystery|Comedy
+22,Assassins,Film-Noir|Sci-Fi|Animation
+23,Powder,Crime
+24,Leaving Las Vegas,Musical|Action|Comedy
+25,Othello,Action
+26,Now and Then,Thriller
+27,Persuasion,Documentary|Western
+28,City of Lost Children The,Action
+29,Shanghai Triad,Animation
+30,Dangerous Minds,Mystery
+31,Twelve Monkeys,Horror|Western|Sci-Fi
+32,Babe,Film-Noir
+33,Dead Man Walking,Horror|Romance|Thriller
+34,Clueless,Fantasy|Children
+35,Cry the Beloved Country,Drama|Children
+36,Richard III,Mystery|Action
+37,Dead Presidents,Mystery|Film-Noir|War
+38,Restoration,Sci-Fi|Documentary
+39,Mighty Aphrodite,Fantasy|Comedy|Action
+40,Taxi Driver,Fantasy|Documentary|Adventure
+41,Rumble in the Bronx,Comedy|Mystery|Musical
+42,Happy Gilmore,Crime|Animation
+43,Bridges of Madison County,Children|Fantasy|Film-Noir
+44,Billy Madison,War|Sci-Fi|Crime
+45,Clerks,Drama
+46,Star Wars,Documentary|Drama
+47,Pulp Fiction,Film-Noir
+48,Forrest Gump,Sci-Fi|Fantasy
+49,Shawshank Redemption,Sci-Fi|Thriller|Action
+50,Matrix The,Sci-Fi|Musical
+51,Silence of the Lambs,Fantasy|Comedy|Children
+52,Jurassic Park,Film-Noir
+53,Schindler's List,Musical|War
+54,Fight Club,Crime
+55,Usual Suspects,Sci-Fi|Film-Noir
+56,Se7en,Comedy|Children
+57,Independence Day,Thriller
+58,Apollo 13,Musical|Children
+59,Fugitive The,Horror|Adventure|Action
+60,Braveheart,Sci-Fi|Romance
+61,Dances with Wolves,War|Sci-Fi|Adventure
+62,Terminator 2,Horror|Romance|Mystery
+63,Goodfellas,Comedy|Children|War
+64,Beauty and the Beast,Crime|Horror|Drama
+65,Lion King,Comedy|Children
+66,Aladdin,Documentary
+67,Batman Forever,Comedy|Children
+68,Outbreak,Documentary|Sci-Fi|Romance
+69,Waterworld,Romance|Comedy
+70,Crimson Tide,Horror|Action
+71,Die Hard: With a Vengeance,Romance|Comedy|Fantasy
+72,Net The,Thriller
+73,First Knight,Documentary|Film-Noir
+74,Casper,Action|Drama|Children
+75,Congo,Film-Noir|Action|Horror
+76,Village of the Damned,Musical|Western|Mystery
+77,Little Princess A,Adventure
+78,Kids,Documentary|Drama|Romance
+79,Shiloh,Horror|Adventure|Film-Noir
+80,Walk in the Clouds A,Adventure|Fantasy
+81,While You Were Sleeping,Drama
+82,Stargate,Documentary|Horror|Fantasy
+83,Professional The,Animation
+84,Interview with the Vampire,Documentary
+85,Legends of the Fall,Western|Fantasy
+86,Ed Wood,Documentary|Mystery
+87,Client The,Horror
+88,River Wild The,War|Western
+89,Star Trek: Generations,Animation|Thriller
+90,Natural Born Killers,Sci-Fi|Romance|Action
+91,Clear and Present Danger,Adventure|Documentary
+92,Firm The,Comedy
+93,Fugitive The,Film-Noir|Musical
+94,Malcolm X,Sci-Fi|Children
+95,Prince of Tides The,Animation|Mystery
+96,Basic Instinct,Western
+97,Unforgiven,Documentary|Horror|Western
+98,Reservoir Dogs,Western
+99,Groundhog Day,Horror|Sci-Fi|Documentary
