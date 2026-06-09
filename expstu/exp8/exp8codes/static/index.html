@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bilibili</title>
+<link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+<style>
+/* ── Variables ──────────────────────────────────────────────────────── */
+:root {
+  --bg: #faf6f0;
+  --bg-warm: #f5efe4;
+  --surface: #ffffff;
+  --surface-hover: #fefcf9;
+  --text: #2c2416;
+  --text-secondary: #7d7365;
+  --text-muted: #a89880;
+  --accent: #b87333;
+  --accent-light: #e8d5c4;
+  --accent-glow: rgba(184, 115, 51, 0.12);
+  --danger: #c94b4b;
+  --danger-light: #fce8e8;
+  --success: #6b8f71;
+  --border: #e8e0d5;
+  --border-light: #f0ebe2;
+  --shadow-sm: 0 1px 2px rgba(44, 36, 22, 0.04);
+  --shadow: 0 1px 3px rgba(44, 36, 22, 0.07), 0 1px 2px rgba(44, 36, 22, 0.05);
+  --shadow-md: 0 4px 16px rgba(44, 36, 22, 0.08);
+  --shadow-lg: 0 12px 40px rgba(44, 36, 22, 0.12);
+  --radius: 6px;
+  --radius-lg: 12px;
+  --font-display: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --transition: 180ms ease;
+}
+
+/* ── Reset & Base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 15px; line-height: 1.6;
+  color: var(--text); background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(184, 115, 51, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(107, 143, 113, 0.03) 0%, transparent 60%);
+}
+
+a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+a:hover { color: #9a5e28; }
+
+button { font-family: var(--font-body); cursor: pointer; border: none; outline: none; }
+input { font-family: var(--font-body); outline: none; }
+
+/* ── Header ─────────────────────────────────────────────────────────── */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.header-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px; height: 56px;
+}
+
+.header-left {
+  display: flex; align-items: center; gap: 32px;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 700;
+  color: var(--text); letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+.brand:hover { color: var(--accent); }
+
+.nav-links {
+  display: flex; align-items: center; gap: 4px;
+  list-style: none;
+}
+
+.nav-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 6px 14px; border-radius: var(--radius);
+  font-size: 13.5px; font-weight: 500; color: var(--text-secondary);
+  background: transparent; transition: all var(--transition);
+  white-space: nowrap;
+}
+.nav-link:hover { color: var(--text); background: var(--bg-warm); }
+.nav-link.active { color: var(--accent); background: var(--accent-light); }
+
+.nav-sort {
+  position: relative;
+}
+.sort-menu {
+  display: none; position: absolute; top: 100%; left: 0;
+  margin-top: 6px; min-width: 130px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow-md);
+  overflow: hidden; z-index: 10;
+}
+.sort-menu.show { display: block; }
+.sort-item {
+  display: block; width: 100%; padding: 8px 16px; text-align: left;
+  font-size: 13px; color: var(--text-secondary); background: transparent;
+  transition: all var(--transition);
+}
+.sort-item:hover { background: var(--bg-warm); color: var(--text); }
+.sort-item.active { color: var(--accent); background: var(--accent-light); }
+
+.header-right {
+  display: flex; align-items: center; gap: 12px;
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: var(--radius);
+  font-size: 13.5px; font-weight: 600;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--accent); color: #fff;
+  box-shadow: 0 1px 3px rgba(184, 115, 51, 0.25);
+}
+.btn-primary:hover { background: #a5632b; box-shadow: 0 2px 8px rgba(184, 115, 51, 0.35); transform: translateY(-1px); }
+.btn-outline {
+  background: transparent; color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+.btn-outline:hover { color: var(--text); border-color: var(--text-muted); background: var(--bg-warm); }
+.btn-sm { padding: 5px 12px; font-size: 12.5px; }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover { background: #b53d3d; }
+
+.btn-icon {
+  width: 36px; height: 36px; padding: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: transparent; color: var(--text-secondary);
+  font-size: 18px; transition: all var(--transition);
+}
+.btn-icon:hover { background: var(--bg-warm); color: var(--text); }
+
+.upload-trigger { position: relative; }
+.upload-input { display: none; }
+
+/* ── Hero ───────────────────────────────────────────────────────────── */
+.hero {
+  max-width: 1280px; margin: 0 auto; padding: 60px 28px 48px;
+  text-align: center;
+}
+.hero-hidden { display: none; }
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 44px); font-weight: 700;
+  color: var(--text); letter-spacing: -0.5px;
+  line-height: 1.25; margin-bottom: 12px;
+}
+.hero p {
+  font-size: 16px; color: var(--text-secondary); max-width: 480px;
+  margin: 0 auto 24px; line-height: 1.7;
+}
+.hero-line {
+  display: block; width: 40px; height: 2px;
+  background: var(--accent); margin: 0 auto 28px; border-radius: 1px;
+}
+
+/* ── Layout ─────────────────────────────────────────────────────────── */
+.main-layout {
+  max-width: 1280px; margin: 0 auto; padding: 0 28px 80px;
+  display: grid; grid-template-columns: 1fr 300px; gap: 32px;
+}
+
+@media (max-width: 900px) {
+  .main-layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+}
+
+/* ── Post Cards ─────────────────────────────────────────────────────── */
+.posts-grid {
+  display: flex; flex-direction: column; gap: 28px;
+}
+
+.post-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.post-card:hover { box-shadow: var(--shadow-md); }
+
+.post-card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 1px solid var(--border-light);
+}
+
+.post-meta {
+  display: flex; align-items: center; gap: 12px;
+  min-width: 0;
+}
+
+.post-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--accent-light); color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; flex-shrink: 0;
+}
+
+.post-author {
+  font-size: 14px; font-weight: 600; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.post-filename {
+  font-size: 13px; color: var(--text-muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 240px;
+}
+
+.post-date {
+  font-size: 12px; color: var(--text-muted); white-space: nowrap;
+}
+
+.post-pdf-wrap {
+  position: relative; width: 100%;
+  aspect-ratio: 16 / 9; background: #f9f8f6;
+  border-bottom: 1px solid var(--border-light);
+}
+.post-pdf-wrap iframe {
+  width: 100%; height: 100%; border: 0;
+}
+
+.post-card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 20px;
+}
+
+.post-actions {
+  display: flex; align-items: center; gap: 8px;
+}
+
+.btn-favor {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 6px 14px; border-radius: 20px;
+  font-size: 13px; font-weight: 500;
+  background: transparent; color: var(--text-secondary);
+  border: 1px solid var(--border);
+  transition: all var(--transition);
+}
+.btn-favor:hover { border-color: var(--danger); color: var(--danger); }
+.btn-favor.is-favored {
+  background: var(--danger-light); color: var(--danger);
+  border-color: var(--danger-light);
+}
+.btn-favor .fav-icon {
+  display: inline-block; transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.btn-favor.is-favored .fav-icon { transform: scale(1.25); }
+
+.btn-fullscreen {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 6px 14px; border-radius: var(--radius);
+  font-size: 13px; color: var(--text-secondary);
+  background: transparent; transition: all var(--transition);
+}
+.btn-fullscreen:hover { background: var(--bg-warm); color: var(--text); }
+
+.btn-delete {
+  display: inline-flex; align-items: center;
+  padding: 4px 10px; border-radius: var(--radius);
+  font-size: 12px; color: var(--text-muted);
+  background: transparent; transition: all var(--transition);
+}
+.btn-delete:hover { color: var(--danger); background: var(--danger-light); }
+
+/* ── Sidebar ────────────────────────────────────────────────────────── */
+.sidebar { position: sticky; top: 72px; align-self: start; }
+
+.sidebar-panel {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.sidebar-panel h3 {
+  font-family: var(--font-display);
+  font-size: 16px; font-weight: 700; color: var(--text);
+  margin-bottom: 16px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.sidebar-panel p { font-size: 13.5px; color: var(--text-muted); line-height: 1.7; }
+
+.sidebar-stat {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 0; border-bottom: 1px solid var(--border-light);
+  font-size: 13.5px;
+}
+.sidebar-stat:last-child { border-bottom: none; }
+.sidebar-stat-label { color: var(--text-secondary); }
+.sidebar-stat-value { font-weight: 600; color: var(--accent); }
+
+/* ── Sidebar Recommendations ─────────────────────────────────────────── */
+.sidebar-panel-rec { margin-top: 16px; }
+
+.rec-list { display: flex; flex-direction: column; gap: 10px; }
+
+.rec-item {
+  display: block; padding: 10px 12px; border-radius: var(--radius);
+  border: 1px solid var(--border-light); background: var(--bg);
+  transition: all var(--transition); cursor: pointer;
+}
+.rec-item:hover {
+  border-color: var(--accent-light); background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.rec-item-title {
+  font-size: 13px; font-weight: 600; color: var(--text);
+  margin-bottom: 4px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.rec-item-meta {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 11.5px; color: var(--text-muted);
+}
+
+.rec-item-author { color: var(--text-secondary); }
+
+.rec-item-favors { color: var(--danger); font-weight: 500; }
+
+.rec-badge {
+  display: inline-block; padding: 1px 6px; border-radius: 10px;
+  font-size: 10px; font-weight: 600;
+}
+.rec-badge-cf { background: var(--accent-light); color: var(--accent); }
+.rec-badge-pop { background: var(--border-light); color: var(--text-muted); }
+
+/* ── Load More ──────────────────────────────────────────────────────── */
+.load-trigger {
+  text-align: center; padding: 36px 0;
+}
+.load-trigger-inner {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 28px; border-radius: 24px;
+  font-size: 13.5px; color: var(--text-muted);
+  background: transparent; border: 1px dashed var(--border);
+  transition: all var(--transition); cursor: pointer;
+}
+.load-trigger-inner:hover {
+  border-color: var(--accent); color: var(--accent);
+  background: var(--accent-glow);
+}
+.load-trigger-inner.spinning {
+  border-style: solid; cursor: default;
+}
+.load-spinner {
+  display: none; width: 16px; height: 16px;
+  border: 2px solid var(--border); border-top-color: var(--accent);
+  border-radius: 50%; animation: spin 0.7s linear infinite;
+}
+.load-trigger-inner.spinning .load-spinner { display: inline-block; }
+.load-trigger-inner.spinning .load-text { display: none; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Auth Modal ─────────────────────────────────────────────────────── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(44, 36, 22, 0.5);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  animation: fadeIn 0.22s ease;
+}
+
+.modal {
+  display: none; position: fixed; inset: 0; z-index: 1001;
+  animation: modalIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-card {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 380px; max-width: 92vw;
+  background: var(--surface); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg); overflow: hidden;
+}
+
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 28px 0;
+}
+.modal-header h2 {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700; color: var(--text);
+}
+
+.modal-close {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-warm); color: var(--text-muted);
+  font-size: 16px; transition: all var(--transition);
+}
+.modal-close:hover { background: #ece4d6; color: var(--text); }
+
+.modal-body { padding: 20px 28px 28px; }
+
+.form-group { margin-bottom: 14px; }
+.form-group label {
+  display: block; font-size: 12.5px; font-weight: 600;
+  color: var(--text-secondary); margin-bottom: 5px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.form-input {
+  width: 100%; padding: 10px 14px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  font-size: 14.5px; color: var(--text); background: var(--bg);
+  transition: all var(--transition);
+}
+.form-input:focus {
+  border-color: var(--accent); background: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+.form-input::placeholder { color: var(--text-muted); }
+
+.modal-footer {
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+.modal-switch {
+  text-align: center; font-size: 13px; color: var(--text-muted);
+}
+.modal-switch a {
+  font-weight: 600; color: var(--accent); cursor: pointer;
+}
+.modal-switch a:hover { color: #9a5e28; }
+
+/* ── Toast ──────────────────────────────────────────────────────────── */
+.toast {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+  padding: 12px 24px; border-radius: 24px;
+  font-size: 13.5px; font-weight: 600; color: #fff;
+  background: #2c2416; box-shadow: var(--shadow-lg);
+  z-index: 2000; animation: toastIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none; opacity: 0; transition: opacity 0.25s;
+}
+.toast.show { opacity: 1; }
+.toast.error { background: var(--danger); }
+.toast.success { background: var(--success); }
+
+@keyframes toastIn {
+  from { transform: translateX(-50%) translateY(12px); opacity: 0; }
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+/* ── Markdown Content ──────────────────────────────────────────────── */
+.post-md-wrap { min-height: 120px; }
+.post-md-loading {
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px; color: var(--text-muted); font-size: 13.5px;
+}
+.post-md-content {
+  padding: 24px 28px; max-height: 520px; overflow-y: auto;
+  font-size: 15px; line-height: 1.8; color: var(--text);
+}
+.post-md-content h1, .post-md-content h2, .post-md-content h3 {
+  font-family: var(--font-display);
+  margin: 20px 0 10px; color: var(--text);
+}
+.post-md-content h1 { font-size: 22px; border-bottom: 2px solid var(--border); padding-bottom: 6px; }
+.post-md-content h2 { font-size: 18px; }
+.post-md-content h3 { font-size: 16px; }
+.post-md-content p { margin: 0 0 12px; }
+.post-md-content ul, .post-md-content ol { padding-left: 22px; margin: 0 0 12px; }
+.post-md-content li { margin-bottom: 4px; }
+.post-md-content code {
+  background: var(--bg-warm); padding: 2px 6px; border-radius: 3px;
+  font-size: 13px; font-family: 'SF Mono', 'Fira Code', monospace;
+}
+.post-md-content pre {
+  background: #2c2416; color: #faf6f0; padding: 16px 20px;
+  border-radius: var(--radius); overflow-x: auto; margin: 0 0 16px;
+}
+.post-md-content pre code { background: transparent; padding: 0; color: inherit; }
+.post-md-content blockquote {
+  border-left: 3px solid var(--accent); padding: 8px 16px;
+  margin: 0 0 12px; background: var(--accent-glow);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.post-md-content table {
+  width: 100%; border-collapse: collapse; margin: 0 0 12px;
+}
+.post-md-content th, .post-md-content td {
+  border: 1px solid var(--border); padding: 8px 12px; text-align: left;
+}
+.post-md-content th { background: var(--bg-warm); font-weight: 600; }
+.post-md-content a { color: var(--accent); text-decoration: underline; }
+.post-md-content img { max-width: 100%; border-radius: var(--radius); }
+.post-md-content hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+/* ── Empty State ────────────────────────────────────────────────────── */
+.empty-state {
+  text-align: center; padding: 64px 20px;
+}
+.empty-state-icon {
+  font-size: 48px; color: var(--text-muted); margin-bottom: 16px;
+  opacity: 0.4;
+}
+.empty-state h3 {
+  font-family: var(--font-display);
+  font-size: 18px; color: var(--text-secondary); margin-bottom: 6px;
+}
+.empty-state p { font-size: 13.5px; color: var(--text-muted); }
+
+/* ── Animations ─────────────────────────────────────────────────────── */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modalIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.post-card { animation: cardIn 0.4s ease backwards; }
+.post-card:nth-child(1) { animation-delay: 0s; }
+.post-card:nth-child(2) { animation-delay: 0.06s; }
+.post-card:nth-child(3) { animation-delay: 0.12s; }
+.post-card:nth-child(4) { animation-delay: 0.18s; }
+.post-card:nth-child(5) { animation-delay: 0.24s; }
+
+/* ── Responsive ─────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .header-inner { padding: 0 16px; height: 52px; }
+  .header-left { gap: 16px; }
+  .brand { font-size: 18px; }
+  .nav-links { gap: 0; }
+  .nav-link { padding: 4px 10px; font-size: 12.5px; }
+  .hero { padding: 40px 16px 32px; }
+  .hero h1 { font-size: 24px; }
+  .main-layout { padding: 0 16px 60px; }
+  .post-card-header { padding: 12px 14px; flex-wrap: wrap; gap: 8px; }
+  .post-card-footer { padding: 10px 14px; flex-wrap: wrap; gap: 8px; }
+  .btn { padding: 6px 14px; font-size: 12.5px; }
+  .modal-card { width: 94vw; }
+  .modal-body { padding: 16px 20px 24px; }
+  .modal-header { padding: 18px 20px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+<div class="header-inner">
+  <div class="header-left">
+    <a href="/" class="brand">bilibili</a>
+    <nav>
+      <ul class="nav-links">
+        <li><button class="nav-link active" id="nav-home">首页</button></li>
+        <li><button class="nav-link" id="nav-myposts">我的发表</button></li>
+        <li class="nav-sort">
+          <button class="nav-link" id="nav-sort-btn">
+            排序 <span style="font-size:10px">&#x25BE;</span>
+          </button>
+          <div class="sort-menu" id="sortMenu">
+            <button class="sort-item active" data-order="time_descending">最新优先</button>
+            <button class="sort-item" data-order="time_ascending">最早优先</button>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="header-right">
+    <input type="file" id="filePdfInput" accept=".pdf,.md" class="upload-input">
+    <button class="btn btn-outline btn-sm" id="btnUpload" title="上传 PDF / Markdown">
+      <span style="font-size:15px">&#x2B07;</span> 上传
+    </button>
+    <button class="btn btn-primary" id="btnLoginRegister">登陆或注册</button>
+  </div>
+</div>
+</header>
+
+<!-- Hero (unauthenticated) -->
+<section class="hero" id="heroArea">
+  <h1>发现与分享精彩文档</h1>
+  <p>上传 PDF 或 Markdown，分享知识，收藏你喜欢的文章。<br>一个安静而温暖的阅读社区。</p>
+  <span class="hero-line"></span>
+</section>
+
+<!-- Main layout -->
+<div class="main-layout">
+  <main>
+    <div class="posts-grid" id="postsArea"></div>
+    <div class="load-trigger">
+      <button class="load-trigger-inner" id="loadMoreBtn">
+        <span class="load-spinner"></span>
+        <span class="load-text">加载更多</span>
+      </button>
+    </div>
+  </main>
+  <aside class="sidebar">
+    <div class="sidebar-panel" id="sidebarPanel">
+      <h3>阅读统计</h3>
+      <div id="sidebarUserInfo">
+        <p>登录后查看统计信息</p>
+      </div>
+    </div>
+    <div class="sidebar-panel sidebar-panel-rec">
+      <h3>为您推荐</h3>
+      <div id="sidebarRecs">
+        <p style="text-align:center;color:var(--text-muted);padding:20px 0;font-size:13.5px">加载中...</p>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- Auth Modal -->
+<div class="modal-overlay" id="modalOverlay"></div>
+<div class="modal" id="modalContainer">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h2 id="modalTitle">用户登陆</h2>
+      <button class="modal-close" id="modalClose">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="authForm">
+        <div class="form-group">
+          <label for="authUsername">用户名</label>
+          <input type="text" id="authUsername" class="form-input" placeholder="不少于5个字符" autocomplete="username" required minlength="5">
+        </div>
+        <div class="form-group">
+          <label for="authPassword">密码</label>
+          <input type="password" id="authPassword" class="form-input" placeholder="不少于5个字符" autocomplete="current-password" required minlength="5">
+        </div>
+        <button type="submit" id="authSubmit" class="btn btn-primary" style="width:100%;justify-content:center;padding:11px">确认</button>
+        <div class="modal-switch" style="margin-top:14px">
+          <a id="authSwitch">切换为注册</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="/static/jquery-1.12.4.js"></script>
+<script src="/static/jquery.cookie.js"></script>
+<script src="/static/marked.min.js"></script>
+<script>
+// ── State ──────────────────────────────────────────────────────────────
+var postsManager = {
+    req: { scope: 'home', order: 'time_descending', offset: 0, limit: 5 },
+    isLimited: false,
+    inQueue: false
+};
+var authMode = 'login';
+
+// ── Toast ─────────────────────────────────────────────────────────────
+function showToast(msg, type) {
+    var $t = $('#toast');
+    $t.text(msg).removeClass('error success').addClass(type + ' show');
+    clearTimeout($t.data('_timer'));
+    $t.data('_timer', setTimeout(function() { $t.removeClass('show'); }, 2200));
+}
+
+// ── Auth Modal ────────────────────────────────────────────────────────
+function showModal() {
+    $('#modalOverlay, #modalContainer').css('display', 'block');
+    setTimeout(function() { $('#authUsername').focus(); }, 100);
+}
+function hideModal() {
+    $('#modalOverlay, #modalContainer').css('display', 'none');
+}
+function switchAuthMode() {
+    if (authMode === 'login') {
+        authMode = 'register';
+        $('#modalTitle').text('注册用户');
+        $('#authSwitch').text('切换为登录');
+    } else {
+        authMode = 'login';
+        $('#modalTitle').text('用户登陆');
+        $('#authSwitch').text('切换为注册');
+    }
+}
+
+$('#btnLoginRegister').on('click', showModal);
+$('#modalClose').on('click', hideModal);
+$('#modalOverlay').on('click', hideModal);
+$('#authSwitch').on('click', switchAuthMode);
+
+$('#authForm').on('submit', function(e) {
+    e.preventDefault();
+    var url = authMode === 'login' ? '/user/login' : '/user/register';
+    var fd = new FormData();
+    fd.append('username', $('#authUsername').val());
+    fd.append('password', $('#authPassword').val());
+    $.ajax({
+        type: 'POST', url: url, data: fd,
+        processData: false, contentType: false,
+        success: function(res) {
+            if (res.result === 'success') {
+                $.cookie('bearer_token', res.bearer_token, { path: '/' });
+                $.cookie('loginUserId', res.userid, { path: '/' });
+                hideModal();
+                location.reload(true);
+            } else {
+                showToast(res.result, 'error');
+            }
+        },
+        error: function() { showToast('请求失败，请重试', 'error'); }
+    });
+});
+
+// ── Auth UI update ────────────────────────────────────────────────────
+var currentUser = null;
+function tokenShowUsername() {
+    var token = $.cookie('bearer_token');
+    if (!token) { loadPosts(); loadRecommendations(); return; }
+    $.ajax({
+        type: 'POST', url: '/user/userinfo',
+        headers: { 'Authorization': 'Bearer ' + token },
+        success: function(res) {
+            if (res.result === 'success') {
+                currentUser = res;
+                $.cookie('loginUserId', res.userid, { path: '/' });
+                $('#btnLoginRegister').text(res.username).removeClass('btn-primary').addClass('btn-outline');
+                $('#heroArea').addClass('hero-hidden');
+                updateSidebar(res);
+            }
+            loadPosts();
+        },
+        error: function() { loadPosts(); }
+    });
+}
+tokenShowUsername();
+
+function updateSidebar(user) {
+    var html = '<div class="sidebar-stat"><span class="sidebar-stat-label">用户名</span><span class="sidebar-stat-value">' + escapeHtml(user.username) + '</span></div>';
+    html += '<div class="sidebar-stat"><span class="sidebar-stat-label">角色</span><span class="sidebar-stat-value">' + (user.userclass === 'admin' ? '管理员' : '普通用户') + '</span></div>';
+    $('#sidebarUserInfo').html(html);
+    loadRecommendations();
+}
+
+// ── File upload ───────────────────────────────────────────────────────
+$('#btnUpload').on('click', function() { $('#filePdfInput').click(); });
+$('#filePdfInput').on('change', function() {
+    var token = $.cookie('bearer_token');
+    if (!token) { showToast('请先登录', 'error'); return; }
+    var file = this.files[0];
+    if (!file) return;
+    var ext = file.name.toLowerCase().split('.').pop();
+    if (['pdf', 'md'].indexOf(ext) === -1) {
+        showToast('仅支持 PDF 和 Markdown 文件', 'error'); return;
+    }
+    var fd = new FormData();
+    fd.append('filePdf', file);
+    $.ajax({
+        type: 'POST', url: '/user/uploadfile',
+        headers: { 'Authorization': 'Bearer ' + token },
+        data: fd, processData: false, contentType: false,
+        success: function(res) {
+            if (res.result === 'success') {
+                showToast('上传成功', 'success');
+                resetPosts(); loadPosts();
+            } else {
+                showToast(res.result, 'error');
+            }
+        },
+        error: function() { showToast('上传失败', 'error'); }
+    });
+    this.value = '';
+});
+
+// ── Post rendering ────────────────────────────────────────────────────
+function formatDate(sec) {
+    var d = new Date(sec * 1000);
+    return d.toLocaleString('zh-CN');
+}
+
+function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── Recommendations sidebar ─────────────────────────────────────────────
+function loadRecommendations() {
+    var token = $.cookie('bearer_token');
+    var headers = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = 'Bearer ' + token;
+    $.ajax({
+        type: 'POST', url: '/user/recommend', headers: headers,
+        data: JSON.stringify({ limit: 5 }),
+        success: function(res) {
+            if (res.result === 'success' && res.data && res.data.length > 0) {
+                renderRecommendations(res.data);
+            } else {
+                $('#sidebarRecs').html(
+                    '<p style="text-align:center;color:var(--text-muted);padding:20px 0;font-size:13.5px">暂无推荐</p>'
+                );
+            }
+        },
+        error: function() {
+            $('#sidebarRecs').html(
+                '<p style="text-align:center;color:var(--text-muted);padding:20px 0;font-size:13.5px">推荐加载失败</p>'
+            );
+        }
+    });
+}
+
+function renderRecommendations(recs) {
+    var html = '<div class="rec-list">';
+    $.each(recs, function(i, r) {
+        var url = '/static/post.html?id=' + r.id;
+        var initial = (r.username || '?')[0].toUpperCase();
+        var badgeHtml = r.method === 'collaborative'
+            ? '<span class="rec-badge rec-badge-cf">协同过滤</span>'
+            : '';
+        html +=
+            '<a class="rec-item" href="' + url + '" target="_blank">' +
+              '<div class="rec-item-title">&#x1F4C4; ' + escapeHtml(r.filename) + '</div>' +
+              '<div class="rec-item-meta">' +
+                '<span class="rec-item-author">' + escapeHtml(r.username) + '</span>' +
+                '<span>' + badgeHtml + ' <span class="rec-item-favors">&#x2764; ' + (r.favors || 0) + '</span></span>' +
+              '</div>' +
+            '</a>';
+    });
+    html += '</div>';
+    $('#sidebarRecs').html(html);
+}
+
+function renderPosts(posts) {
+    var container = $('#postsArea');
+    var myUserId = parseInt($.cookie('loginUserId')) || 0;
+    $.each(posts, function(i, v) {
+        var initial = (v.username || '?')[0].toUpperCase();
+        var delBtn = '';
+        if (myUserId === v.userid) {
+            delBtn = '<button class="btn-delete" onclick="deletePost(' + v.id + ')">删除</button>';
+        }
+        var favorText = v.isfavor ? '已喜欢' : '喜欢';
+        var favorClass = v.isfavor ? ' is-favored' : '';
+        var postViewUrl = '/static/post.html?id=' + v.id;
+        var rawUrl = '/post/' + v.rdir;
+        var isMd = /\.md$/i.test(v.rdir);
+        var cardId = 'post-' + v.id + '-' + i;
+
+        var contentHtml;
+        if (isMd) {
+            contentHtml =
+                '<div class="post-md-wrap" id="' + cardId + '">' +
+                '<div class="post-md-loading">加载 Markdown 内容...</div>' +
+                '</div>';
+        } else {
+            contentHtml =
+                '<div class="post-pdf-wrap">' +
+                '<iframe src="' + rawUrl + '#toolbar=0"></iframe>' +
+                '</div>';
+        }
+
+        var card =
+            '<div class="post-card" data-postid="' + v.id + '">' +
+            '<div class="post-card-header">' +
+              '<div class="post-meta">' +
+                '<div class="post-avatar">' + initial + '</div>' +
+                '<span class="post-author">' + escapeHtml(v.username) + '</span>' +
+                '<span class="post-filename">' + escapeHtml(v.filename) + '</span>' +
+              '</div>' +
+              '<span class="post-date">' + formatDate(v.datesec) + '</span>' +
+            '</div>' +
+            contentHtml +
+            '<div class="post-card-footer">' +
+              '<div class="post-actions">' +
+                '<button class="btn-favor' + favorClass + '" onclick="toggleFavor(' + v.id + ', ' + (v.isfavor ? 'true' : 'false') + ')">' +
+                  '<span class="fav-icon">' + (v.isfavor ? '&#x2764;' : '&#x2661;') + '</span> ' +
+                  favorText + ' (' + (v.favors || 0) + ')' +
+                '</button>' +
+                '<a class="btn-fullscreen" href="' + postViewUrl + '" target="_blank">全屏 &#x2197;</a>' +
+              '</div>' +
+              delBtn +
+            '</div>' +
+            '</div>';
+        container.append(card);
+
+        // Load and render markdown content
+        if (isMd) {
+            (function(postUrl, cid) {
+                $.ajax({
+                    url: postUrl,
+                    dataType: 'text',
+                    success: function(raw) {
+                        var html = marked.parse(raw);
+                        $('#' + cid).html(
+                            '<div class="post-md-content">' + html + '</div>'
+                        );
+                    },
+                    error: function() {
+                        $('#' + cid).html(
+                            '<div class="post-md-loading" style="color:#c94b4b">加载失败</div>'
+                        );
+                    }
+                });
+            })(rawUrl, cardId);
+        }
+    });
+}
+
+// ── Load posts ────────────────────────────────────────────────────────
+function loadPosts() {
+    if (postsManager.inQueue || postsManager.isLimited) return;
+    postsManager.inQueue = true;
+    var $btn = $('#loadMoreBtn');
+    $btn.addClass('spinning');
+    var token = $.cookie('bearer_token');
+    var headers = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = 'Bearer ' + token;
+    $.ajax({
+        type: 'POST', url: '/user/getposts', headers: headers,
+        data: JSON.stringify(postsManager.req),
+        success: function(res) {
+            if (res.result === 'success' && res.data) {
+                var data = res.data;
+                if (data.length === 0 && postsManager.req.offset === 0) {
+                    $('#postsArea').html(
+                        '<div class="empty-state">' +
+                        '<div class="empty-state-icon">&#x1F4DA;</div>' +
+                        '<h3>还没有帖子</h3>' +
+                        '<p>登录后上传第一篇文档吧</p></div>'
+                    );
+                    $btn.hide();
+                } else {
+                    if (data.length < postsManager.req.limit) {
+                        postsManager.isLimited = true;
+                        $btn.find('.load-text').text('— 这就是全部了 —');
+                        $btn.removeClass('spinning').prop('disabled', true);
+                    } else {
+                        $btn.removeClass('spinning');
+                    }
+                    renderPosts(data);
+                    postsManager.req.offset += data.length;
+                }
+            }
+            postsManager.inQueue = false;
+        },
+        error: function() {
+            $btn.removeClass('spinning').find('.load-text').text('加载失败，点击重试');
+            postsManager.inQueue = false;
+        }
+    });
+}
+
+function resetPosts() {
+    postsManager.req.offset = 0;
+    postsManager.isLimited = false;
+    postsManager.inQueue = false;
+    $('#postsArea').empty();
+    var $btn = $('#loadMoreBtn');
+    $btn.show().removeClass('spinning').prop('disabled', false);
+    $btn.find('.load-text').text('加载更多');
+}
+
+// ── Post actions ──────────────────────────────────────────────────────
+function deletePost(postid) {
+    var token = $.cookie('bearer_token');
+    if (!token || !confirm('确定删除这篇帖子？')) return;
+    $.ajax({
+        type: 'POST', url: '/user/setpost',
+        headers: { 'Authorization': 'Bearer ' + token },
+        contentType: 'application/json',
+        data: JSON.stringify({ postid: postid, isdel: true }),
+        success: function(res) {
+            if (res.result === 'success') {
+                showToast('删除成功', 'success');
+                resetPosts(); loadPosts();
+            } else { showToast(res.result, 'error'); }
+        }
+    });
+}
+
+function toggleFavor(postid, isFavor) {
+    var token = $.cookie('bearer_token');
+    if (!token) { showToast('请先登录', 'error'); return; }
+    $.ajax({
+        type: 'POST', url: '/user/setpost',
+        headers: { 'Authorization': 'Bearer ' + token },
+        contentType: 'application/json',
+        data: JSON.stringify({ postid: postid, isfavor: !isFavor }),
+        success: function(res) {
+            if (res.result === 'success') { resetPosts(); loadPosts(); }
+        }
+    });
+}
+
+// ── Navigation ────────────────────────────────────────────────────────
+function setActiveNav($el) {
+    $('.nav-link').removeClass('active');
+    $el.addClass('active');
+}
+
+$('#nav-home').on('click', function() {
+    setActiveNav($(this));
+    postsManager.req.scope = 'home';
+    resetPosts(); loadPosts();
+});
+
+$('#nav-myposts').on('click', function() {
+    setActiveNav($(this));
+    postsManager.req.scope = 'self';
+    resetPosts(); loadPosts();
+});
+
+$('#nav-sort-btn').on('click', function(e) {
+    e.stopPropagation();
+    $('#sortMenu').toggleClass('show');
+});
+
+$(document).on('click', function() { $('#sortMenu').removeClass('show'); });
+
+$('.sort-item').on('click', function(e) {
+    e.stopPropagation();
+    var order = $(this).data('order');
+    $('.sort-item').removeClass('active');
+    $(this).addClass('active');
+    postsManager.req.order = order;
+    $('#sortMenu').removeClass('show');
+    resetPosts(); loadPosts();
+});
+
+// ── Infinite scroll ───────────────────────────────────────────────────
+function isElementInViewport(el) {
+    var $el = $(el);
+    if ($el.css('display') === 'none') return false;
+    var win = $(window);
+    var viewTop = win.scrollTop();
+    var viewBottom = viewTop + win.height();
+    var offset = $el.offset();
+    if (!offset) return false;
+    var elTop = offset.top;
+    var elBottom = elTop + $el.height();
+    return elBottom > viewTop && elTop < viewBottom;
+}
+
+var scrollTimer;
+$(window).on('scroll resize', function() {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function() {
+        if (isElementInViewport('#loadMoreBtn') && !postsManager.inQueue && !postsManager.isLimited) {
+            loadPosts();
+        }
+    }, 300);
+});
+
+// ── Init ──────────────────────────────────────────────────────────────
+// Post loading is now triggered by tokenShowUsername() above,
+// which calls loadPosts() after user identity is confirmed.
+// This ensures the delete button shows correctly for post owners.
+</script>
+</body>
+</html>
